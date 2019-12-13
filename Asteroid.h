@@ -6,16 +6,15 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#include "Game.h"
-
-int main(int argc, char** argv)
+#pragma once
+#include "Actor.h"
+class Asteroid : public Actor
 {
-	Game game;
-	bool success = game.Initialize();
-	if (success)
-	{
-		game.RunLoop();
-	}
-	game.Shutdown();
-	return 0;
-}
+public:
+	Asteroid(class Game* game);
+	~Asteroid();
+	
+	class CircleComponent* GetCircle() { return mCircle; }
+private:
+	class CircleComponent* mCircle;
+};

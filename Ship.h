@@ -6,16 +6,15 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#include "Game.h"
-
-int main(int argc, char** argv)
+#pragma once
+#include "Actor.h"
+class Ship : public Actor
 {
-	Game game;
-	bool success = game.Initialize();
-	if (success)
-	{
-		game.RunLoop();
-	}
-	game.Shutdown();
-	return 0;
-}
+public:
+	Ship(class Game* game);
+
+	void UpdateActor(float deltaTime) override;
+	void ActorInput(const uint8_t* keyState) override;
+private:
+	float mLaserCooldown;
+};

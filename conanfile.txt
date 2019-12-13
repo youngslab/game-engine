@@ -3,6 +3,8 @@ glm/0.9.9.5@g-truc/stable
 glfw/3.3@bincrafters/stable
 fmt/6.0.0@bincrafters/stable
 sdl2/2.0.10@bincrafters/stable
+glew/2.1.0@bincrafters/stable
+soil2/1.11@bincrafters/stable
 
 [generators] 
 cmake_find_package

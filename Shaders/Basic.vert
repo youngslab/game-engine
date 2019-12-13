@@ -6,16 +6,18 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#include "Game.h"
+// Request GLSL 3.3
+#version 330
 
-int main(int argc, char** argv)
+// This should correspond to the data stored
+// for each vertex in the vertex buffer.
+// For now, just a position.
+in vec3 inPosition;
+
+void main()
 {
-	Game game;
-	bool success = game.Initialize();
-	if (success)
-	{
-		game.RunLoop();
-	}
-	game.Shutdown();
-	return 0;
+	// The vertex shader needs to output a 4D
+	// coordinate.
+	// For now set the 4th coordinate to 1.0
+	gl_Position = vec4(inPosition, 1.0);
 }

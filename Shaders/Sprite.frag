@@ -6,16 +6,20 @@
 // See LICENSE in root directory for full details.
 // ----------------------------------------------------------------
 
-#include "Game.h"
+// Request GLSL 3.3
+#version 330
 
-int main(int argc, char** argv)
+// Tex coord input from vertex shader
+in vec2 fragTexCoord;
+
+// This corresponds to the output color to the color buffer
+out vec4 outColor;
+
+// This is used for the texture sampling
+uniform sampler2D uTexture;
+
+void main()
 {
-	Game game;
-	bool success = game.Initialize();
-	if (success)
-	{
-		game.RunLoop();
-	}
-	game.Shutdown();
-	return 0;
+	// Sample color from texture
+	outColor = texture(uTexture, fragTexCoord);
 }
