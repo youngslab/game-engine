@@ -8,8 +8,6 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
   file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake" "${CMAKE_BINARY_DIR}/conan.cmake") 
 endif() 
 
-
-
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 conan_cmake_run(CONANFILE conanfile.txt
     PROFILE default 
@@ -31,16 +29,18 @@ add_executable(gamex
   Shader.cpp
   Ship.cpp
   SpriteComponent.cpp
-  Texture.cpp
-  VertexArray.cpp) 
+  VertexArray.cpp
+	gl/texture.cpp) 
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_BINARY_DIR})
 find_package(glew REQUIRED)
+find_package(fmt REQUIRED)
 find_package(sdl2 REQUIRED)
 find_package(soil2 REQUIRED)
 
 set_target_properties(gamex PROPERTIES
             CXX_STANDARD 17)
 
-target_link_libraries(gamex glew::glew sdl2::sdl2 soil2::soil2)
+target_link_libraries(gamex fmt::fmt glew::glew sdl2::sdl2 soil2::soil2)
 
+target_include_directories(gamex PRIVATE ./include)

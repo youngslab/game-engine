@@ -13,6 +13,9 @@
 #include <vector>
 #include "Math.h"
 
+// new impl
+#include "gl/texture.h"
+
 class Game {
 public:
   Game();
@@ -26,7 +29,7 @@ public:
   void AddSprite(class SpriteComponent *sprite);
   void RemoveSprite(class SpriteComponent *sprite);
 
-  class Texture *GetTexture(const std::string &fileName);
+  auto get_texture(const std::string &file) -> std::shared_ptr<gl::texture>;
 
   // Game-specific (add/remove asteroid)
   void AddAsteroid(class Asteroid *ast);
@@ -44,6 +47,9 @@ private:
 
   // Map of textures loaded
   std::unordered_map<std::string, class Texture *> mTextures;
+
+  // textures
+  std::unordered_map<std::string, std::shared_ptr<gl::texture>> textures;
 
   // All the actors in the game
   std::vector<class Actor *> mActors;

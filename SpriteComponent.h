@@ -9,6 +9,8 @@
 #pragma once
 #include "Component.h"
 #include "SDL2/SDL.h"
+#include "gl/texture.h"
+
 class SpriteComponent : public Component {
 public:
   // (Lower draw order corresponds with further back)
@@ -16,15 +18,15 @@ public:
   ~SpriteComponent();
 
   virtual void Draw(class Shader *shader);
-  virtual void SetTexture(class Texture *texture);
+  virtual void set_texture(std::shared_ptr<gl::texture> t);
 
   int GetDrawOrder() const { return mDrawOrder; }
-  int GetTexHeight() const { return mTexHeight; }
-  int GetTexWidth() const { return mTexWidth; }
+  int GetTexHeight() const { return this->height; }
+  int GetTexWidth() const { return this->width; }
 
 protected:
-  class Texture *mTexture;
+  std::shared_ptr<gl::texture> texture;
   int mDrawOrder;
-  int mTexWidth;
-  int mTexHeight;
+  int width;
+  int height;
 };

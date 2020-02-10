@@ -7,7 +7,6 @@
 // ----------------------------------------------------------------
 
 #include "Shader.h"
-#include "Texture.h"
 #include <SDL2/SDL.h>
 #include <fstream>
 #include <sstream>
@@ -58,7 +57,7 @@ void Shader::SetMatrixUniform(const char *name, const Matrix4 &matrix) {
 }
 
 bool Shader::CompileShader(const std::string &fileName, GLenum shaderType,
-                           GLuint &outShader) {
+			   GLuint &outShader) {
   // Open file
   std::ifstream shaderFile(fileName);
   if (shaderFile.is_open()) {
